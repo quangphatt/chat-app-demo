@@ -1,16 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Login from './components/Login';
 import Chats from './components/Chats';
+
+import { AuthProvider } from './contexts/AuthContext';
 
 const App = () => {
   return (
     <div style={{fontFamily: 'Avenir'}}>
       <Router>
-        <Switch>
-          <Route path='/' component={Login} />
-        </Switch>
+        <AuthProvider>
+          <Routes>
+            <Route path='/chats' element={<Chats />} />
+            <Route path='/' element={<Login />} />
+          </Routes>
+        </AuthProvider>
       </Router>
     </div>
   );
